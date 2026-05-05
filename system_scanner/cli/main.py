@@ -6,6 +6,8 @@ from system_scanner.core.collectors.cpu import CPUCollector
 from system_scanner.output.formatters.json_formatter import JSONFormatter
 from system_scanner.output.formatters.text_formatter import TextFormatter
 
+from system_scanner.utils.logger import setup_logger
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -21,16 +23,28 @@ def main():
         help="Output format"
     )
 
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Enable debug logging"
+    )
+
     args = parser.parse_args()
+
+    logger = setup_logger(args.verbose)
+
+    logger.info("Starting system scan...")
 
     scanner = SystemScanner()
 
     if args.cpu:
+        logger.debug("Registering CPU collector")
         scanner.register(CPUCollector())
 
     results = scanner.scan()
 
-    # اختيار الفورماتر
+    logger.debug("Scan completed")
+
     if args.format == "json":
         formatter = JSONFormatter()
     else:
@@ -39,6 +53,8 @@ def main():
     output = formatter.format(results)
 
     print(output)
+
+    logger.info("Finished")
 
 
 if __name__ == "__main__":
