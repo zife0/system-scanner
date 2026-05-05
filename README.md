@@ -13,9 +13,15 @@ A lightweight CLI tool for scanning system environments and collecting structure
 
 ---
 
+## Installation
+
+pip install -e .
+
+---
+
 ## Usage
 
-python -m scanner --verbose
+scanner --verbose
 
 ---
 
@@ -51,5 +57,5 @@ scanner/
 
 ## Notes
 
-- Built for understanding system behavior and structure  
+- Built for understanding system behavior and structure
 - Designed to stay simple and modular
