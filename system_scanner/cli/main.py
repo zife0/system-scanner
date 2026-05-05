@@ -8,6 +8,7 @@ from system_scanner.core.collectors.disk import DiskCollector
 
 from system_scanner.output.formatters.json_formatter import JSONFormatter
 from system_scanner.output.formatters.text_formatter import TextFormatter
+from system_scanner.output.formatters.table_formatter import TableFormatter
 
 from system_scanner.utils.logger import setup_logger
 
@@ -23,7 +24,7 @@ def main():
 
     parser.add_argument(
         "--format",
-        choices=["json", "text"],
+        choices=["json", "text", "table"],
         default="text",
         help="Output format"
     )
@@ -37,7 +38,6 @@ def main():
     args = parser.parse_args()
 
     logger = setup_logger(args.verbose)
-
     logger.info("Starting system scan...")
 
     scanner = SystemScanner()
@@ -55,16 +55,16 @@ def main():
         scanner.register(DiskCollector())
 
     results = scanner.scan()
-
     logger.debug("Scan completed")
 
     if args.format == "json":
         formatter = JSONFormatter()
+    elif args.format == "table":
+        formatter = TableFormatter()
     else:
         formatter = TextFormatter()
 
     output = formatter.format(results)
-
     print(output)
 
     logger.info("Finished")
