@@ -7,7 +7,7 @@ name = "system-scanner"
 version = "0.1.0"
 description = "Modular CLI tool for scanning system resources"
 authors = [{ name = "Rashid" }]
-dependencies = ["psutil"]
+dependencies = ["psutil", "rich"]
 
 [project.scripts]
 system-scanner = "system_scanner.cli.main:main"
