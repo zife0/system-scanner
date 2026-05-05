@@ -1,6 +1,7 @@
 import argparse
 import sys
 import logging
+import json
 from scanner.core import scan_system
 
 def setup_logger(verbose=False):
@@ -16,10 +17,10 @@ def main():
     parser.add_argument("--system", action="store_true", help="Scan system info")
     parser.add_argument("--files", action="store_true", help="Count files in current directory")
     parser.add_argument("--output", type=str, default="scan_report.json", help="Output file name")
+    parser.add_argument("--format", choices=["json", "txt"], default="json", help="Output format")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose mode")
 
     args = parser.parse_args()
-
     setup_logger(args.verbose)
 
     try:
@@ -27,9 +28,7 @@ def main():
 
         if args.system:
             logging.info("Scanning system info...")
-            result = scan_system(verbose=args.verbose)
-            import json
-            data["system"] = json.loads(result)
+            data["system"] = json.loads(scan_system(verbose=args.verbose))
 
         if args.files:
             import os
@@ -40,9 +39,13 @@ def main():
             logging.warning("No options selected. Use --help")
             return
 
-        import json
+        if args.format == "json":
+            content = json.dumps(data, indent=4)
+        else:
+            content = "\n".join([f"{key}: {value}" for key, value in data.items()])
+
         with open(args.output, "w") as f:
-            f.write(json.dumps(data, indent=4))
+            f.write(content)
 
         logging.info(f"Report saved to {args.output}")
 
