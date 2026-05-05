@@ -7,8 +7,20 @@ A lightweight tool for scanning system environments and collecting structured da
 - Environment inspection
 - Data extraction
 
-## Use Case
-Designed for understanding system behavior and environment structure.
+## Usage
+
+```bash
+python advanced_scanner.py
+```
+
+## Output
+
+The tool generates a file:
+
+```bash
+scan_report.json
+```
 
 ## Status
+
 In development
