@@ -1,25 +1,55 @@
 # System Scanner
 
-A lightweight tool for scanning system environments and collecting structured data for analysis.
+A lightweight CLI tool for scanning system environments and collecting structured data.
 
-## Capabilities
-- System information gathering
-- Environment inspection
-- Data extraction
+---
+
+## Features
+
+- System information scanning  
+- Environment inspection  
+- JSON report generation  
+- Command-based execution  
+
+---
 
 ## Usage
 
+Run the tool using:
+
 ```bash
-python advanced_scanner.py
+python advanced_scanner.py --full
 ```
+
+### Available Options
+
+```bash
+--system   Scan system information
+--env      Scan environment variables
+--full     Run full scan
+```
+
+---
+
+## Example
+
+```bash
+python advanced_scanner.py --system
+```
+
+---
 
 ## Output
 
-The tool generates a file:
+The tool generates:
 
 ```bash
 scan_report.json
 ```
+
+Containing structured system data.
+
+---
 
 ## Status
 
