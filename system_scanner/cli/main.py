@@ -12,6 +12,7 @@ from system_scanner.output.formatters.table_formatter import TableFormatter
 from system_scanner.output.formatters.rich_formatter import RichFormatter
 
 from system_scanner.utils.logger import setup_logger
+from system_scanner.utils.banner import show_banner
 
 
 def main():
@@ -37,6 +38,8 @@ def main():
     )
 
     args = parser.parse_args()
+
+    show_banner()
 
     logger = setup_logger(args.verbose)
     logger.info("Starting system scan...")
@@ -69,7 +72,7 @@ def main():
 
     output = formatter.format(results)
 
-    if output:  # rich formatter يطبع مباشرة
+    if output:
         print(output)
 
     logger.info("Finished")
