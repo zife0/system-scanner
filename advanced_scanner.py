@@ -2,6 +2,7 @@ import platform
 import socket
 import os
 import json
+import argparse
 import datetime
 
 def collect_system_info():
@@ -16,23 +17,36 @@ def collect_system_info():
         "scan_time": datetime.datetime.now().isoformat()
     }
 
-def collect_environment(limit=15):
+def collect_environment(limit=10):
     env = dict(os.environ)
     return dict(list(env.items())[:limit])
 
 def save_report(data, filename="scan_report.json"):
-    with open(filename, "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4)
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
 
 def main():
-    report = {
-        "system": collect_system_info(),
-        "environment": collect_environment()
-    }
+    parser = argparse.ArgumentParser(description="System Scanner Tool")
+    parser.add_argument("--system", action="store_true", help="Scan system info")
+    parser.add_argument("--env", action="store_true", help="Scan environment variables")
+    parser.add_argument("--full", action="store_true", help="Run full scan")
+
+    args = parser.parse_args()
+
+    report = {}
+
+    if args.system or args.full:
+        report["system"] = collect_system_info()
+
+    if args.env or args.full:
+        report["environment"] = collect_environment()
+
+    if not report:
+        print("No scan option selected. Use --help")
+        return
 
     save_report(report)
-    print("Scan completed successfully.")
-    print("Report saved as scan_report.json")
+    print("Scan completed. Output saved to scan_report.json")
 
 if __name__ == "__main__":
     main()
