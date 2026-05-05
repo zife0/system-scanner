@@ -7,6 +7,7 @@
 A modular command-line tool for inspecting system resources with clean architecture, composable collectors, and structured output.
 
 > Designed for developers and system engineers who need a lightweight, extensible system inspection tool for automation and diagnostics.
+> Built with a focus on scalability, extensibility, and real-world system tooling.
 
 ---
 
@@ -34,14 +35,14 @@ A modular command-line tool for inspecting system resources with clean architect
 
 Clone the repository:
 
-```bash
+```bash id="i9ybnh"
 git clone https://github.com/zife0/system-scanner.git
 cd system-scanner
 ```
 
 Install locally:
 
-```bash
+```bash id="36t6b1"
 pip install -e .
 ```
 
@@ -51,19 +52,19 @@ pip install -e .
 
 Run the scanner:
 
-```bash
+```bash id="5f6dmp"
 system-scanner --cpu
 ```
 
 With JSON output:
 
-```bash
+```bash id="56p87l"
 system-scanner --cpu --format json
 ```
 
 Enable verbose logging:
 
-```bash
+```bash id="61jpmq"
 system-scanner --cpu --verbose
 ```
 
@@ -71,11 +72,11 @@ system-scanner --cpu --verbose
 
 ## 🖥️ CLI Preview
 
-```bash
+```bash id="fx6x7c"
 system-scanner --cpu
 ```
 
-```text
+```text id="q9d63z"
 CPU:
   usage_percent: 14.2
   cores: 8
@@ -85,7 +86,7 @@ CPU:
 
 ## 📌 Example Command
 
-```bash
+```bash id="36ruhp"
 system-scanner --cpu --format json --verbose
 ```
 
@@ -93,7 +94,7 @@ system-scanner --cpu --format json --verbose
 
 ## 🧠 Architecture
 
-```text
+```text id="n41pnb"
 system_scanner/
 ├── core/
 │   ├── scanner.py
@@ -123,6 +124,17 @@ This project follows a modular and extensible architecture:
 * Collectors act as independent plugins
 * Output is abstracted via formatter system
 * Designed for scalability and real-world usage
+
+---
+
+## 🛠️ Roadmap
+
+* Memory and disk collectors
+* Network statistics collector
+* Table / rich terminal output
+* Plugin auto-discovery system
+* Configuration file support
+* Performance optimizations
 
 ---
 
