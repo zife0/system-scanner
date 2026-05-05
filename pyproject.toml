@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "system-scanner"
+version = "0.1.0"
+description = "Modular CLI tool for scanning system resources"
+authors = [{ name = "Rashid" }]
+dependencies = ["psutil"]
+
+[project.scripts]
+system-scanner = "system_scanner.cli.main:main"
