@@ -1,7 +1,10 @@
 import argparse
 
 from system_scanner.core.scanner import SystemScanner
+
 from system_scanner.core.collectors.cpu import CPUCollector
+from system_scanner.core.collectors.memory import MemoryCollector
+from system_scanner.core.collectors.disk import DiskCollector
 
 from system_scanner.output.formatters.json_formatter import JSONFormatter
 from system_scanner.output.formatters.text_formatter import TextFormatter
@@ -15,6 +18,8 @@ def main():
     )
 
     parser.add_argument("--cpu", action="store_true", help="Scan CPU")
+    parser.add_argument("--memory", action="store_true", help="Scan Memory")
+    parser.add_argument("--disk", action="store_true", help="Scan Disk")
 
     parser.add_argument(
         "--format",
@@ -40,6 +45,14 @@ def main():
     if args.cpu:
         logger.debug("Registering CPU collector")
         scanner.register(CPUCollector())
+
+    if args.memory:
+        logger.debug("Registering Memory collector")
+        scanner.register(MemoryCollector())
+
+    if args.disk:
+        logger.debug("Registering Disk collector")
+        scanner.register(DiskCollector())
 
     results = scanner.scan()
 
