@@ -11,6 +11,10 @@ def setup_logger(verbose=False):
         format="%(levelname)s: %(message)s"
     )
 
+def pretty_print(data):
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
 def main():
     parser = argparse.ArgumentParser(description="System Scanner Tool")
 
@@ -18,6 +22,7 @@ def main():
     parser.add_argument("--files", action="store_true", help="Count files in current directory")
     parser.add_argument("--output", type=str, default="scan_report.json", help="Output file name")
     parser.add_argument("--format", choices=["json", "txt"], default="json", help="Output format")
+    parser.add_argument("--pretty", action="store_true", help="Print output to terminal")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose mode")
 
     args = parser.parse_args()
@@ -37,6 +42,10 @@ def main():
 
         if not data:
             logging.warning("No options selected. Use --help")
+            return
+
+        if args.pretty:
+            pretty_print(data)
             return
 
         if args.format == "json":
