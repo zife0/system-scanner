@@ -9,6 +9,7 @@ from system_scanner.core.collectors.disk import DiskCollector
 from system_scanner.output.formatters.json_formatter import JSONFormatter
 from system_scanner.output.formatters.text_formatter import TextFormatter
 from system_scanner.output.formatters.table_formatter import TableFormatter
+from system_scanner.output.formatters.rich_formatter import RichFormatter
 
 from system_scanner.utils.logger import setup_logger
 
@@ -24,7 +25,7 @@ def main():
 
     parser.add_argument(
         "--format",
-        choices=["json", "text", "table"],
+        choices=["json", "text", "table", "rich"],
         default="text",
         help="Output format"
     )
@@ -61,11 +62,15 @@ def main():
         formatter = JSONFormatter()
     elif args.format == "table":
         formatter = TableFormatter()
+    elif args.format == "rich":
+        formatter = RichFormatter()
     else:
         formatter = TextFormatter()
 
     output = formatter.format(results)
-    print(output)
+
+    if output:  # rich formatter يطبع مباشرة
+        print(output)
 
     logger.info("Finished")
 
