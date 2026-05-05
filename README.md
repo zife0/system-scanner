@@ -1,86 +1,127 @@
-# System Scanner
+# system-scanner
 
-A lightweight CLI tool for scanning system environments and collecting structured data for analysis.
-
----
-
-## Purpose
-
-This tool is designed to inspect system environments and provide structured output for analysis and automation workflows.
+A modular command-line tool for inspecting system resources with clean architecture, composable collectors, and structured output.
 
 ---
 
-## Features
+## 🚀 Features
 
-- System information gathering
-- Environment inspection
-- JSON report generation
-- Command-line execution
-- Multiple output formats (JSON / TXT)
-- Pretty terminal output
+* Modular core architecture (separation of concerns)
+* Pluggable collectors (CPU, extensible design)
+* Multiple output formats (JSON, text)
+* CLI interface with argument parsing
+* Logging system with verbose mode
+* Production-ready structure
 
 ---
 
-## Installation
+## 📦 Installation
 
+Clone the repository:
+
+```
+git clone https://github.com/zife0/system-scanner.git
+cd system-scanner
+```
+
+Install locally:
+
+```
 pip install -e .
+```
 
 ---
 
-## Usage
+## ⚙️ Usage
 
-Run system scan:
-scanner --system
+Run the scanner:
 
-Count files:
-scanner --files
+```
+system-scanner --cpu
+```
 
-Full scan with output file:
-scanner --system --files
+With JSON output:
 
-Pretty output (no file):
-scanner --system --pretty
+```
+system-scanner --cpu --format json
+```
 
-Custom output format:
-scanner --system --format txt
+Enable verbose logging:
 
-Verbose mode:
-scanner --system --verbose
-
----
-
-## Output
-
-The tool generates a JSON report file:
-
-scan_report.json
+```
+system-scanner --cpu --verbose
+```
 
 ---
 
-## Example Output
+## 🧠 Architecture
 
+```
+system_scanner/
+├── core/
+│   ├── scanner.py
+│   └── collectors/
+│       └── cpu.py
+│
+├── cli/
+│   └── main.py
+│
+├── output/
+│   └── formatters/
+│       ├── base.py
+│       ├── json_formatter.py
+│       └── text_formatter.py
+│
+└── utils/
+    └── logger.py
+```
+
+---
+
+## 🧩 Design Philosophy
+
+This project follows a modular and extensible architecture:
+
+* Core logic is isolated from CLI
+* Collectors act as independent plugins
+* Output is abstracted via formatter system
+* Designed for scalability and real-world usage
+
+---
+
+## 📌 Example Output
+
+### Text
+
+```
+CPU:
+  usage_percent: 14.2
+  cores: 8
+```
+
+### JSON
+
+```
 {
-  "timestamp": "2025-01-01T12:00:00",
-  "system": "Windows",
-  "node": "DESKTOP-123",
-  "release": "10",
-  "processor": "Intel64 Family",
-  "files_in_cwd": 5
+    "cpu": {
+        "usage_percent": 14.2,
+        "cores": 8
+    }
 }
+```
 
 ---
 
-## Project Structure
+## 🛠️ Future Improvements
 
-scanner/
-  __init__.py
-  __main__.py
-  cli.py
-  core.py
+* Memory and disk collectors
+* Table/pretty output
+* Config file support
+* Plugin auto-discovery
+* Cross-platform enhancements
 
 ---
 
-## Notes
+## 📄 License
 
-- Built for understanding system behavior and structure
-- Designed to stay simple and modular
+MIT License
