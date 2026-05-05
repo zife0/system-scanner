@@ -1,56 +1,55 @@
 # System Scanner
 
-A lightweight CLI tool for scanning system environments and collecting structured data.
+A lightweight CLI tool for scanning system environments and collecting structured data for analysis.
 
 ---
 
 ## Features
 
-- System information scanning  
-- Environment inspection  
-- JSON report generation  
-- Command-based execution  
+- System information gathering
+- Environment inspection
+- JSON report generation
+- Command-line execution
 
 ---
 
 ## Usage
 
-Run the tool using:
-
-```bash
-python advanced_scanner.py --full
-```
-
-### Available Options
-
-```bash
---system   Scan system information
---env      Scan environment variables
---full     Run full scan
-```
-
----
-
-## Example
-
-```bash
-python advanced_scanner.py --system
-```
+python -m scanner --verbose
 
 ---
 
 ## Output
 
-The tool generates:
+The tool generates a JSON report file:
 
-```bash
 scan_report.json
-```
-
-Containing structured system data.
 
 ---
 
-## Status
+## Example Output
 
-In development
+{
+  "system": "Windows",
+  "node": "DESKTOP-123",
+  "release": "10",
+  "processor": "Intel64 Family",
+  "files_in_cwd": 5
+}
+
+---
+
+## Project Structure
+
+scanner/
+  __init__.py
+  __main__.py
+  cli.py
+  core.py
+
+---
+
+## Notes
+
+- Built for understanding system behavior and structure  
+- Designed to stay simple and modular
