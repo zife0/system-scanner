@@ -4,6 +4,12 @@ A lightweight CLI tool for scanning system environments and collecting structure
 
 ---
 
+## Purpose
+
+This tool is designed to inspect system environments and provide structured output for analysis and automation workflows.
+
+---
+
 ## Features
 
 - System information gathering
