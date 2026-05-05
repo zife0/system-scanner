@@ -16,6 +16,8 @@ This tool is designed to inspect system environments and provide structured outp
 - Environment inspection
 - JSON report generation
 - Command-line execution
+- Multiple output formats (JSON / TXT)
+- Pretty terminal output
 
 ---
 
@@ -27,7 +29,23 @@ pip install -e .
 
 ## Usage
 
-scanner --verbose
+Run system scan:
+scanner --system
+
+Count files:
+scanner --files
+
+Full scan with output file:
+scanner --system --files
+
+Pretty output (no file):
+scanner --system --pretty
+
+Custom output format:
+scanner --system --format txt
+
+Verbose mode:
+scanner --system --verbose
 
 ---
 
@@ -42,6 +60,7 @@ scan_report.json
 ## Example Output
 
 {
+  "timestamp": "2025-01-01T12:00:00",
   "system": "Windows",
   "node": "DESKTOP-123",
   "release": "10",
