@@ -1,4 +1,5 @@
 import argparse
+import sys
 from scanner.core import scan_system
 
 def main():
@@ -19,12 +20,17 @@ def main():
 
     args = parser.parse_args()
 
-    result = scan_system(verbose=args.verbose)
+    try:
+        result = scan_system(verbose=args.verbose)
 
-    with open(args.output, "w") as f:
-        f.write(result)
+        with open(args.output, "w") as f:
+            f.write(result)
 
-    print(f"Report saved to {args.output}")
+        print(f"[✓] Report saved to {args.output}")
+
+    except Exception as e:
+        print(f"[✗] Error: {str(e)}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
