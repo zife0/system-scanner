@@ -24,11 +24,28 @@ def build_table():
 
     uptime = time.time() - psutil.boot_time()
 
+    cpu_bar = "█" * int(cpu / 5)
+    memory_bar = "█" * int(memory.percent / 5)
+    disk_bar = "█" * int(disk.percent / 5)
+
     table.add_row("Hostname", socket.gethostname())
     table.add_row("Platform", platform.system())
-    table.add_row("CPU Usage", f"{cpu}%")
-    table.add_row("Memory Usage", f"{memory.percent}%")
-    table.add_row("Disk Usage", f"{disk.percent}%")
+
+    table.add_row(
+        "CPU Usage",
+        f"{cpu}% {cpu_bar}"
+    )
+
+    table.add_row(
+        "Memory Usage",
+        f"{memory.percent}% {memory_bar}"
+    )
+
+    table.add_row(
+        "Disk Usage",
+        f"{disk.percent}% {disk_bar}"
+    )
+
     table.add_row("CPU Cores", str(psutil.cpu_count()))
     table.add_row("Uptime", f"{int(uptime // 60)} min")
 
