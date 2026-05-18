@@ -10,6 +10,7 @@ from system_scanner.output.formatters.json_formatter import JSONFormatter
 from system_scanner.output.formatters.text_formatter import TextFormatter
 from system_scanner.output.formatters.table_formatter import TableFormatter
 from system_scanner.output.formatters.rich_formatter import RichFormatter
+from system_scanner.output.live_dashboard import run_live_dashboard
 
 from system_scanner.utils.logger import setup_logger
 from system_scanner.utils.banner import show_banner
@@ -25,6 +26,12 @@ def main():
     parser.add_argument("--disk", action="store_true", help="Scan Disk")
 
     parser.add_argument(
+        "--live",
+        action="store_true",
+        help="Run live monitoring dashboard"
+    )
+
+    parser.add_argument(
         "--format",
         choices=["json", "text", "table", "rich"],
         default="text",
@@ -38,6 +45,10 @@ def main():
     )
 
     args = parser.parse_args()
+
+    if args.live:
+        run_live_dashboard()
+        return
 
     show_banner()
 
