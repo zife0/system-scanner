@@ -1,6 +1,6 @@
 # system-scanner
 
-![preview](preview.png)
+![preview](preview.png.jpg)
 
 > Modular system inspection and diagnostics toolkit built for extensibility, observability, and real-world environments.
 
