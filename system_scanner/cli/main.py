@@ -46,6 +46,12 @@ def main():
     )
 
     parser.add_argument(
+        "--export",
+        type=str,
+        help="Export scan results to file"
+    )
+
+    parser.add_argument(
         "--verbose",
         action="store_true",
         help="Enable debug logging"
@@ -93,6 +99,13 @@ def main():
         formatter = TextFormatter()
 
     output = formatter.format(results)
+
+    if args.export:
+        with open(args.export, "w") as file:
+            file.write(output)
+
+        print(f"Results exported to {args.export}")
+        return
 
     if output:
         print(output)
