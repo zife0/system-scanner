@@ -12,6 +12,14 @@ from rich.table import Table
 console = Console()
 
 
+def colorize(value):
+    if value < 50:
+        return "green"
+    elif value < 80:
+        return "yellow"
+    return "red"
+
+
 def build_table():
     table = Table(title="SYSTEM SCANNER LIVE", border_style="cyan")
 
@@ -24,27 +32,20 @@ def build_table():
 
     uptime = time.time() - psutil.boot_time()
 
-    cpu_bar = "█" * int(cpu / 5)
-    memory_bar = "█" * int(memory.percent / 5)
-    disk_bar = "█" * int(disk.percent / 5)
+    cpu_color = colorize(cpu)
+    memory_color = colorize(memory.percent)
+    disk_color = colorize(disk.percent)
+
+    cpu_bar = f"[{cpu_color}]" + ("█" * int(cpu / 5))
+    memory_bar = f"[{memory_color}]" + ("█" * int(memory.percent / 5))
+    disk_bar = f"[{disk_color}]" + ("█" * int(disk.percent / 5))
 
     table.add_row("Hostname", socket.gethostname())
     table.add_row("Platform", platform.system())
 
-    table.add_row(
-        "CPU Usage",
-        f"{cpu}% {cpu_bar}"
-    )
-
-    table.add_row(
-        "Memory Usage",
-        f"{memory.percent}% {memory_bar}"
-    )
-
-    table.add_row(
-        "Disk Usage",
-        f"{disk.percent}% {disk_bar}"
-    )
+    table.add_row("CPU Usage", f"{cpu}% {cpu_bar}")
+    table.add_row("Memory Usage", f"{memory.percent}% {memory_bar}")
+    table.add_row("Disk Usage", f"{disk.percent}% {disk_bar}")
 
     table.add_row("CPU Cores", str(psutil.cpu_count()))
     table.add_row("Uptime", f"{int(uptime // 60)} min")
