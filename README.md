@@ -1,5 +1,7 @@
 # system-scanner
 
+![preview](preview.png.jpg)
+
 > Modular system monitoring and diagnostics toolkit.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
@@ -10,14 +12,14 @@
 
 ## ✨ Features
 
-* CPU / Memory / Disk collectors
-* Live monitoring dashboard
-* Top process monitoring
-* Doctor diagnostics mode
-* JSON / Table / Rich output
-* Export & reporting support
-* Structured CLI architecture
-* Modular and extensible design
+- CPU / Memory / Disk collectors
+- Live monitoring dashboard
+- Top process monitoring
+- Doctor diagnostics mode
+- JSON / Table / Rich output
+- Export & reporting support
+- Structured CLI architecture
+- Modular and extensible design
 
 ---
 
@@ -95,10 +97,10 @@ system-scanner --cpu --format json --export report.json
 
 The project is built around a modular collector system:
 
-* Collectors handle data gathering
-* Formatters handle output rendering
-* CLI layer controls orchestration
-* Utilities provide logging and terminal helpers
+- Collectors handle data gathering
+- Formatters handle output rendering
+- CLI layer controls orchestration
+- Utilities provide logging and terminal helpers
 
 Designed to stay scalable, extensible, and production-friendly.
 
@@ -106,20 +108,20 @@ Designed to stay scalable, extensible, and production-friendly.
 
 ## 🧪 Tech Stack
 
-* Python
-* psutil
-* Rich
-* argparse
+- Python
+- psutil
+- Rich
+- argparse
 
 ---
 
 ## 📌 Roadmap
 
-* Network monitoring
-* Watch mode
-* Realtime graphs
-* Alert system
-* Plugin support
+- Network monitoring
+- Watch mode
+- Realtime graphs
+- Alert system
+- Plugin support
 
 ---
 
