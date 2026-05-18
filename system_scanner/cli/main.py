@@ -11,6 +11,7 @@ from system_scanner.output.formatters.text_formatter import TextFormatter
 from system_scanner.output.formatters.table_formatter import TableFormatter
 from system_scanner.output.formatters.rich_formatter import RichFormatter
 from system_scanner.output.live_dashboard import run_live_dashboard
+from system_scanner.output.process_monitor import show_top_processes
 
 from system_scanner.utils.logger import setup_logger
 from system_scanner.utils.banner import show_banner
@@ -32,6 +33,12 @@ def main():
     )
 
     parser.add_argument(
+        "--top-processes",
+        action="store_true",
+        help="Show top CPU consuming processes"
+    )
+
+    parser.add_argument(
         "--format",
         choices=["json", "text", "table", "rich"],
         default="text",
@@ -48,6 +55,10 @@ def main():
 
     if args.live:
         run_live_dashboard()
+        return
+
+    if args.top_processes:
+        show_top_processes()
         return
 
     show_banner()
