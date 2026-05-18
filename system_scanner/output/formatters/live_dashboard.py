@@ -1,4 +1,6 @@
 import time
+import platform
+import socket
 
 import psutil
 
@@ -11,20 +13,24 @@ console = Console()
 
 
 def build_table():
-    table = Table(title="SYSTEM SCANNER LIVE")
+    table = Table(title="SYSTEM SCANNER LIVE", border_style="cyan")
 
-    table.add_column("Metric", style="cyan")
-    table.add_column("Value", style="green")
+    table.add_column("Metric", style="cyan", justify="left")
+    table.add_column("Value", style="green", justify="right")
 
     cpu = psutil.cpu_percent()
     memory = psutil.virtual_memory()
     disk = psutil.disk_usage("/")
 
+    uptime = time.time() - psutil.boot_time()
+
+    table.add_row("Hostname", socket.gethostname())
+    table.add_row("Platform", platform.system())
     table.add_row("CPU Usage", f"{cpu}%")
     table.add_row("Memory Usage", f"{memory.percent}%")
     table.add_row("Disk Usage", f"{disk.percent}%")
-
     table.add_row("CPU Cores", str(psutil.cpu_count()))
+    table.add_row("Uptime", f"{int(uptime // 60)} min")
 
     return table
 
