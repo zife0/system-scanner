@@ -1,143 +1,128 @@
 # system-scanner
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+> Modular system monitoring and diagnostics toolkit.
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-success)
 
-A modular command-line tool for inspecting system resources with clean architecture, composable collectors, and structured output.
+---
 
-> Designed for developers and system engineers who need a lightweight, extensible system inspection tool for automation and diagnostics.
-> Built with a focus on scalability, extensibility, and real-world system tooling.
+## ✨ Features
+
+* CPU / Memory / Disk collectors
+* Live monitoring dashboard
+* Top process monitoring
+* Doctor diagnostics mode
+* JSON / Table / Rich output
+* Export & reporting support
+* Structured CLI architecture
+* Modular and extensible design
 
 ---
 
-## 🚀 Features
+## 🚀 Installation
 
-* Modular core architecture (separation of concerns)
-* Pluggable collectors (CPU, extensible design)
-* Multiple output formats (JSON, text)
-* CLI interface with argument parsing
-* Logging system with verbose mode
-* Production-ready structure
-
----
-
-## 💡 Use Cases
-
-* Automation scripts for system monitoring
-* Lightweight diagnostics tool
-* Integration with CI/CD pipelines
-* Debugging system performance issues
-
----
-
-## 📦 Installation
-
-Clone the repository:
-
-```bash id="i9ybnh"
+```bash
 git clone https://github.com/zife0/system-scanner.git
+
 cd system-scanner
-```
 
-Install locally:
-
-```bash id="36t6b1"
 pip install -e .
 ```
 
 ---
 
-## ⚙️ Usage
+## ⚡ Usage
 
-Run the scanner:
+### Scan CPU
 
-```bash id="5f6dmp"
+```bash
 system-scanner --cpu
 ```
 
-With JSON output:
+### Scan Memory
 
-```bash id="56p87l"
-system-scanner --cpu --format json
+```bash
+system-scanner --memory
 ```
 
-Enable verbose logging:
+### Scan Disk
 
-```bash id="61jpmq"
-system-scanner --cpu --verbose
+```bash
+system-scanner --disk
 ```
 
----
+### Rich Output
 
-## 🖥️ CLI Preview
-
-```bash id="fx6x7c"
-system-scanner --cpu
+```bash
+system-scanner --cpu --format rich
 ```
 
-```text id="q9d63z"
-CPU:
-  usage_percent: 14.2
-  cores: 8
+### Table Output
+
+```bash
+system-scanner --cpu --format table
 ```
 
----
+### Live Dashboard
 
-## 📌 Example Command
+```bash
+system-scanner --live
+```
 
-```bash id="36ruhp"
-system-scanner --cpu --format json --verbose
+### Top Processes
+
+```bash
+system-scanner --top-processes
+```
+
+### Doctor Diagnostics
+
+```bash
+system-scanner --doctor
+```
+
+### Export Results
+
+```bash
+system-scanner --cpu --format json --export report.json
 ```
 
 ---
 
 ## 🧠 Architecture
 
-```text id="n41pnb"
-system_scanner/
-├── core/
-│   ├── scanner.py
-│   └── collectors/
-│       └── cpu.py
-│
-├── cli/
-│   └── main.py
-│
-├── output/
-│   └── formatters/
-│       ├── base.py
-│       ├── json_formatter.py
-│       └── text_formatter.py
-│
-└── utils/
-    └── logger.py
-```
+The project is built around a modular collector system:
+
+* Collectors handle data gathering
+* Formatters handle output rendering
+* CLI layer controls orchestration
+* Utilities provide logging and terminal helpers
+
+Designed to stay scalable, extensible, and production-friendly.
 
 ---
 
-## 🧩 Design Philosophy
+## 🧪 Tech Stack
 
-This project follows a modular and extensible architecture:
-
-* Core logic is isolated from CLI
-* Collectors act as independent plugins
-* Output is abstracted via formatter system
-* Designed for scalability and real-world usage
+* Python
+* psutil
+* Rich
+* argparse
 
 ---
 
-## 🛠️ Roadmap
+## 📌 Roadmap
 
-* Memory and disk collectors
-* Network statistics collector
-* Table / rich terminal output
-* Plugin auto-discovery system
-* Configuration file support
-* Performance optimizations
+* Network monitoring
+* Watch mode
+* Realtime graphs
+* Alert system
+* Plugin support
 
 ---
 
 ## 📄 License
 
-MIT License
+MIT
