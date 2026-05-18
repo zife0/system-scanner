@@ -1,8 +1,8 @@
 # system-scanner
 
-![preview](preview.png.jpg)
+![preview](preview.png)
 
-> Modular system monitoring and diagnostics toolkit.
+> Modular system inspection and diagnostics toolkit built for extensibility, observability, and real-world environments.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -14,6 +14,7 @@
 
 - CPU / Memory / Disk collectors
 - Live monitoring dashboard
+- Live terminal dashboard with dynamic indicators
 - Top process monitoring
 - Doctor diagnostics mode
 - JSON / Table / Rich output
